@@ -39,25 +39,50 @@ public class App {
     return new ModelAndView(model, layout);
   }, new VelocityTemplateEngine());
 
-  get("/teams/:id/assign", (request, response) -> {
+  get("/teams/:id/add", (request, response) -> {
     HashMap<String, Object> model = new HashMap<String, Object>();
     Team team = Team.find(Integer.parseInt(request.params(":id")));
-    model.put("members", Member.getAll());
+    //model.put("members", Member.getAll());
     model.put("team", team);
-    model.put("template", "templates/assign.vtl");
+    model.put("template", "templates/members-new.vtl");
     return new ModelAndView(model, layout);
   }, new VelocityTemplateEngine());
 
-  post("/teams/:id/assign", (request, response) -> {
+  post("/teams/:id/add", (request, response) -> {
     Map<String, Object> model = new HashMap<String, Object>();
     Team team = Team.find(Integer.parseInt(request.params(":id")));
-    model.put("team", team);
-    team.clearMembers();
-    for (String memID : request.queryParams()){
-      Member member = Member.find(Integer.parseInt(memID));
-      team.addMember(member);
-    }
+
+    String name = request.queryParams("memberName");
+    String description = request.queryParams("description");
+    Member newMember = new Member(name, description);
+    team.addMember(newMember);
+model.put("team", team);
     model.put("template", "templates/team.vtl");
+    return new ModelAndView(model, layout);
+  }, new VelocityTemplateEngine());
+
+
+  get("/members/new", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/members-new.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("/members/new", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      String memberName = request.queryParams("name");
+      String memberDescription   = request.queryParams("description");
+      Member member = new Member(memberName, memberDescription);
+      model.put("members", Member.getAll());
+      model.put("template", "templates/members.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/members/:id", (request, response) -> {
+    Map<String, Object> model = new HashMap<String, Object>();
+    Member member = Member.find(Integer.parseInt(request.params(":id")));
+    model.put("member", member);
+    model.put("template", "templates/member.vtl");
     return new ModelAndView(model, layout);
   }, new VelocityTemplateEngine());
 }

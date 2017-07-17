@@ -14,11 +14,11 @@ public class Member {
     mId = instances.size();
   }
 
-  public String name(){
+  public String getName(){
     return mname;
   }
 
-  public String description(){
+  public String getDescription(){
     return mdescription;
   }
 
@@ -26,9 +26,10 @@ public class Member {
     return instances;
   }
 
-  public int id(){
+  public int getId(){
     return mId;
   }
+
 
   public static Member find(int id){
     return instances.get(id-1);

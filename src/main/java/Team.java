@@ -14,11 +14,11 @@ public class Team {
     mMembers = new ArrayList<Member>();
   }
 
-  public String name(){
+  public String getName(){
     return mName;
   }
 
-  public int id(){
+  public int getId(){
     return mId;
   }
 
@@ -37,7 +37,7 @@ public class Team {
   }
 
   public static Team find(int id){
-    return instances.get(id-1); 
+    return instances.get(id-1);
   }
 
   public void clearMembers(){

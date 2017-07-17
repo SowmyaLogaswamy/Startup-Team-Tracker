@@ -1,10 +1,10 @@
 <!--team.vtl-->
-<h1>Team name: $team.name()</h1>
-<h3>Members of team $team.name()!</h3>
+<h1>Team name: $team.getName()</h1>
+<h3>Members of team $team.getName()!</h3>
 <ul>
   #foreach ($member in $team.allMembers())
-    <li><a href="/members/$member.id()">$member.name()</a></li>
+    <li><a href="/members/$member.getId()">$member.getName()</a></li>
   #end
 </ul>
-<a href="/teams/$team.id()/assign">Add Members</a>
+<a href="/teams/$team.getId()/add">Add Members</a>
 <!--team.vtl-->
