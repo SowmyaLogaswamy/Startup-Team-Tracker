@@ -76,5 +76,4 @@ public class TeamTest {
     testTeam.clearMembers();
     assertEquals(0, testTeam.allMembers().size());
   }
-
 }
