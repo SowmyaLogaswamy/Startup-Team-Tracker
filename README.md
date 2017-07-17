@@ -1,4 +1,4 @@
-# _Weekend Team Tracker_
+# _Weekend Startup Team Tracker_
 
 #### _This program allow us to add teams and members for a hackathon event, July 7, 2017_
 
