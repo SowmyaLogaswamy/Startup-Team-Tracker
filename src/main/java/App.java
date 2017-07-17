@@ -1,0 +1,64 @@
+import spark.ModelAndView;
+import spark.template.velocity.VelocityTemplateEngine;
+import static spark.Spark.*;
+import java.util.Map;
+import java.util.HashMap;
+
+public class App {
+  public static void main(String[] args) {
+    staticFileLocation("/public");
+    String layout = "templates/layout.vtl";
+
+  get("/", (request, response) -> {
+    Map<String, Object> model = new HashMap<String, Object>();
+    model.put("teams", Team.getAll());
+    model.put("template", "templates/teams.vtl");
+    return new ModelAndView(model, layout);
+  }, new VelocityTemplateEngine());
+
+  get("/teams/new", (request, response) -> {
+    Map<String, Object> model = new HashMap<String, Object>();
+    model.put("template", "templates/teams-new.vtl");
+    return new ModelAndView(model, layout);
+  }, new VelocityTemplateEngine());
+
+  post("/teams/new", (request, response) -> {
+    Map<String, Object> model = new HashMap<String, Object>();
+    String teamName = request.queryParams("teamName");
+    Team team = new Team(teamName);
+    model.put("teams", Team.getAll());
+    model.put("template", "templates/teams.vtl");
+    return new ModelAndView(model, layout);
+  }, new VelocityTemplateEngine());
+
+  get("/teams/:id", (request, response) -> {
+    HashMap<String, Object> model = new HashMap<String, Object>();
+    Team team = Team.find(Integer.parseInt(request.params(":id")));
+    model.put("team", team);
+    model.put("template", "templates/team.vtl");
+    return new ModelAndView(model, layout);
+  }, new VelocityTemplateEngine());
+
+  get("/teams/:id/assign", (request, response) -> {
+    HashMap<String, Object> model = new HashMap<String, Object>();
+    Team team = Team.find(Integer.parseInt(request.params(":id")));
+    model.put("members", Member.getAll());
+    model.put("team", team);
+    model.put("template", "templates/assign.vtl");
+    return new ModelAndView(model, layout);
+  }, new VelocityTemplateEngine());
+
+  post("/teams/:id/assign", (request, response) -> {
+    Map<String, Object> model = new HashMap<String, Object>();
+    Team team = Team.find(Integer.parseInt(request.params(":id")));
+    model.put("team", team);
+    team.clearMembers();
+    for (String memID : request.queryParams()){
+      Member member = Member.find(Integer.parseInt(memID));
+      team.addMember(member);
+    }
+    model.put("template", "templates/team.vtl");
+    return new ModelAndView(model, layout);
+  }, new VelocityTemplateEngine());
+}
+}

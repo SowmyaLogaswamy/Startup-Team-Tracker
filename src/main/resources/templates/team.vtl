@@ -1,0 +1,10 @@
+<!--team.vtl-->
+<h1>Team name: $team.name()</h1>
+<h3>Members of team $team.name()!</h3>
+<ul>
+  #foreach ($member in $team.allMembers())
+    <li><a href="/members/$member.id()">$member.name()</a></li>
+  #end
+</ul>
+<a href="/teams/$team.id()/assign">Add Members</a>
+<!--team.vtl-->
