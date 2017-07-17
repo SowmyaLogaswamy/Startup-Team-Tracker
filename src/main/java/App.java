@@ -85,5 +85,11 @@ public class App {
       model.put("template", "templates/member.vtl");
       return new ModelAndView(model, layout);
     },new VelocityTemplateEngine());
+
+    get("/about-page", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/about-page.vtl");
+      return new ModelAndView(model, layout);
+    },new VelocityTemplateEngine());
   }
 }
