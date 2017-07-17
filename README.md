@@ -20,7 +20,7 @@ _This application can be used by a Weekend Hackathon Coordinator to manage and t
 |---|---|---|
 |User sees welcome message on home page with options to view a specific team, add a new team|User selects add a new team|New team will be displayed on the home page|
 |User sees a page that displays the list of teams|User selects add a new member|User is able to add a member|User clicks on add a member link|
-|User is able to view the added member|User is able to view the details of the selected member|User clicks on the name of the member|Details of a member is shown||Take to home page|Click back button|User is taken to home page|
+|User is able to view the added member|User is able to view the details of the selected member|User clicks on the name of the member|Details of a member is shown|Take to home page|Click back button|User is taken to home page|
 
 ## Known Bugs
 
