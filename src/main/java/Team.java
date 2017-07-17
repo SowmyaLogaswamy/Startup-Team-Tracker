@@ -14,7 +14,7 @@ public class Team {
     mMembers = new ArrayList<Member>();
   }
 
-  public String getName(){
+  public String getName() {
     return mName;
   }
 
@@ -22,29 +22,29 @@ public class Team {
     return mId;
   }
 
-  public List<Member> allMembers(){
+  public List<Member> allMembers() {
     return mMembers;
   }
 
-  public static List<Team> getAll(){
+  public static List<Team> getAll() {
     return instances;
   }
 
-  public void addMember(Member member){
+  public void addMember(Member member) {
     if (!mMembers.contains(member)){
       mMembers.add(member);
     }
   }
 
-  public static Team find(int id){
+  public static Team find(int id) {
     return instances.get(id-1);
   }
 
-  public void clearMembers(){
+  public void clearMembers() {
     mMembers.clear();
   }
 
-  public static void clearTeams(){
+  public static void clearTeams() {
     instances.clear();
   }
 }

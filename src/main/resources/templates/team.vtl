@@ -3,7 +3,7 @@
 <h3>Members of team $team.getName()!</h3>
 <ul>
   #foreach ($member in $team.allMembers())
-    <li><a href="/members/$member.getId()">$member.getName()</a></li>
+    <li><a href="/teams/$team.getId()/members/$member.getId()">$member.getName()</a></li>
   #end
 </ul>
 <a href="/teams/$team.getId()/add">Add Members</a>

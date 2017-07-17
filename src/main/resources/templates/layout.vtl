@@ -4,12 +4,17 @@
     <title>Startup Weekend Team Tracker</title>
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
   </head>
-  <body>
-  <!--begin main template-->
+  <body style="background-color:powderblue;">
+    <nav class="nav navbar navbar-inverse navbar-static-top">
+      <div class="container">
+        <ul class="nav nav-pills">
+          <li role="presentation" class="active"><a href="\">Home</a></li>
+        </ul>
+      </div>
+    </nav>
     <div class="container">
-    <h1> Weekend Startup Team Tracker</h1>
-      #parse( $template )
+      <h1> Weekend Startup Team Tracker</h1>
+        #parse( $template )
     </div>
-    <!--end main template-->
   </body>
 </html>
